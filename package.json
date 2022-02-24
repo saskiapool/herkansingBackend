@@ -1,0 +1,20 @@
+{
+  "name": "backendherkansing",
+  "version": "1.0.0",
+  "description": "dit is voor mijn herkansing van backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node server.js"
+  },
+  "author": "Saskia",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "camelcase": "^6.3.0",
+    "express": "^4.17.3",
+    "lodash": "^4.17.21"
+  }
+}
