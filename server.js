@@ -9,6 +9,7 @@ const user = require("./models/user")
 const bcrypt = require('bcrypt')
 const { deburr } = require('lodash')
 
+
 connectDB();
 
 app.engine('handlebars', engine())
@@ -17,6 +18,8 @@ app.set('views', './views')
 
 //pakt je directorty name, die zet static file naar static name waardoor je standaard in stadic folder zit en kun je styles inladen
 app.use(express.static(__dirname + '/static'))
+
+app.use(express.urlencoded({ extended: true }))
 
 //Showing login form
 app.get('/', (req, res) => {
@@ -31,8 +34,7 @@ app.post('/home', async (req, res) => {
   const gebruikersnaam = req.body.gebruikersnaam
   const wachtwoord = req.body.wachtwoord
   try {
-        const verborgenWachtwoord = await bcrypt.hash(req.body.wachtwoord, 10)
-        console.log('hoi')
+        const verborgenWachtwoord = await bcrypt.hash(wachtwoord, 10)
        
         const result = await user.create({
           gebruikersnaam: gebruikersnaam,
@@ -41,17 +43,15 @@ app.post('/home', async (req, res) => {
 
        res.redirect('/about')
   } catch {
-    console.log('helloooo')
+    console.log('Niet gelukt om in te loggen, probeer het nog eens')
       res.redirect('home')
   }
-  console.log(result)
 })
 
-app.post('/about', (req, res) => {
+app.get('/about', (req, res) => {
   res.render('about', {
     person: {
-      firstname: "Saskia",
-      lastname: "Pool",
+      gebruikersnaam: user,
     }
     })
   })
