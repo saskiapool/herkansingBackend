@@ -1,21 +1,16 @@
 <h1>Login Pagina</h1>   
     <div class="login">    
-    <form id="login" method="get" action="login.php">    
-        <label><b>Gebruikersnaam     
-            
-        </label>    
-        <input type="text" name="Uname" id="Uname" placeholder="Gebruikersnaam">    
-        <br><br>    
-        <label><b>Wachtwoord    
-           
-        </label>    
-        <input type="Password" name="Pass" id="Pass" placeholder="Wachtwoord">    
-        <br><br>    
-        <a href="about"><input type="button" name="log" id="log" value="Log In"><span></span><span></span><span></span><span></span></a>       
-        <br><br>    
-        <input type="checkbox" id="check">    
-        <span>Onthoudt mij</span>    
-        <br><br>    
-        <a href="#">Wachtwoord vergeten</a>    
+    <form id="login" method="post" action="/home">    
+       <div>
+           <label for="gebruikersnaam">gebruikersnaam</label> 
+           <input type="text" id="gebruikersnaam" required>
+       </div>
+       <br>
+       <div>
+           <label for="wachtwoord">wachtwoord</label> 
+           <input type="password" id="wachtwoord" required>
+       </div>
+       <br>
+       <button id="log" formaction="about" type="submit">Login</button>
     </form>     
     </div>  

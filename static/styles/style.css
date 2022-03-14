@@ -24,21 +24,22 @@ label{
     color: #CFA2A3;  
     font-size: 17px;  
 }  
-#Uname{  
+#gebruikersnaam{  
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+} 
+ 
+#wachtwoord{  
     width: 300px;  
     height: 30px;  
     border: none;  
     border-radius: 3px;  
     padding-left: 8px;  
 }  
-#Pass{  
-    width: 300px;  
-    height: 30px;  
-    border: none;  
-    border-radius: 3px;  
-    padding-left: 8px;  
-      
-}  
+
 #log{  
     width: 300px;  
     height: 30px;  
@@ -55,9 +56,8 @@ label{
     cursor: pointer;
 }
 
-span{   
-    font-size: 17px;  
-}  
+
+ 
 a{  
     float: left;  
 }  

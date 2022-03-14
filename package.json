@@ -2,9 +2,9 @@
   "name": "backendherkansing",
   "version": "1.0.0",
   "description": "dit is voor mijn herkansing van backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "nodemon index.js",
+    "startDev": "nodemon index.js",
     "start": "node server.js"
   },
   "author": "Saskia",
@@ -13,6 +13,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "camelcase": "^6.3.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
