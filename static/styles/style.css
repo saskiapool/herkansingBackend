@@ -2,7 +2,7 @@ body
 {  
     margin: 0;  
     padding: 0;  
-    background-color:#6abadeba;  
+    background-color:#BFA3A3;  
     font-family: 'Arial';  
 }  
 .login{  
@@ -11,17 +11,17 @@ body
         margin: auto;  
         margin: 20 0 0 450px;  
         padding: 80px;  
-        background: #23463f;  
+        background: #EFEBEA;  
         border-radius: 15px ;  
           
 }  
-h2{  
+h1{  
     text-align: center;  
-    color: #277582;  
+    color: #EFEBEA;  
     padding: 20px;  
 }  
 label{  
-    color: #08ffd1;  
+    color: #CFA2A3;  
     font-size: 17px;  
 }  
 #Uname{  
@@ -45,15 +45,25 @@ label{
     border: none;  
     border-radius: 17px;  
     padding-left: 7px;  
-    color: blue;  
-  
-  
+    color: #EFEBEA;  
+    background-color: #CFA2A3;
 }  
-span{  
-    color: white;  
+
+#log:hover{ 
+    color: #EFEBEA;  
+    background-color: #BFA3A3;
+    cursor: pointer;
+}
+
+span{   
     font-size: 17px;  
 }  
 a{  
-    float: right;  
-    background-color: grey;  
+    float: left;  
 }  
+
+p{
+    text-align: center;  
+    color: #EFEBEA;  
+    padding: 20px;
+}
