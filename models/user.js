@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     gebruikersnaam: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     wachtwoord: {
         type: String,

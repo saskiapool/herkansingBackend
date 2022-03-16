@@ -5,7 +5,7 @@ body
     background-color:#BFA3A3;  
     font-family: 'Arial';  
 }  
-.login{  
+.login, .register{  
         width: 382px;  
         overflow: hidden;  
         margin: auto;  
@@ -40,7 +40,7 @@ label{
     padding-left: 8px;  
 }  
 
-#log{  
+#log, #reg{  
     width: 300px;  
     height: 30px;  
     border: none;  
@@ -56,7 +56,11 @@ label{
     cursor: pointer;
 }
 
-
+#reg:hover{ 
+    color: #EFEBEA;  
+    background-color: #BFA3A3;
+    cursor: pointer;
+}
  
 a{  
     float: left;  
