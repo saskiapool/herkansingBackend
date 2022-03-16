@@ -26,30 +26,6 @@ app.get('/', (req, res) => {
   res.render('home')
   })
 
-//laat log in pagina zien
-app.get('/login', (req, res) =>{
-  res.render('login')
-})
-
-//gebruik van inloggen
-app.post('/login', async (req, res) => {
-  const gebruikersnaam = req.body.gebruikersnaam
-  const wachtwoord = req.body.wachtwoord
-    try {
-          const verborgenWachtwoord = await bcrypt.hash(wachtwoord, 10)
-         
-          const result = await user.create({
-            gebruikersnaam: gebruikersnaam,
-            wachtwoord: verborgenWachtwoord
-          })
-  
-         res.redirect('/about')
-    } catch {
-      console.log('Niet gelukt om in te loggen, probeer het nog eens')
-        res.redirect('login')
-    }
-  })
-
 //laat registreer form zien
 app.get('/register', (req, res) => {
   res.render('register')
@@ -71,6 +47,30 @@ app.get('/register', (req, res) => {
     } catch {
       console.log('Niet gelukt om een account aan te maken, probeer het nog eens')
         res.redirect('register')
+    }
+  })
+
+//laat log in pagina zien
+app.get('/login', (req, res) =>{
+  res.render('login')
+})
+
+//gebruik van inloggen
+app.post('/login', async (req, res) => {
+  const gebruikersnaam = req.body.gebruikersnaam
+  const wachtwoord = req.body.wachtwoord
+    try {
+          const verborgenWachtwoord = await bcrypt.hash(wachtwoord, 10)
+         
+          const result = await user.create({
+            gebruikersnaam: gebruikersnaam,
+            wachtwoord: verborgenWachtwoord
+          })
+  
+         res.redirect('/about')
+    } catch {
+      console.log('Niet gelukt om in te loggen, probeer het nog eens')
+        res.redirect('login')
     }
   })
 

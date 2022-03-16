@@ -5,16 +5,16 @@ body
     background-color:#BFA3A3;  
     font-family: 'Arial';  
 }  
-.login, .register{  
+.login, .register, #knoppen{  
         width: 382px;  
         overflow: hidden;  
         margin: auto;  
         margin: 20 0 0 450px;  
         padding: 80px;  
         background: #EFEBEA;  
-        border-radius: 15px ;  
-          
+        border-radius: 15px ;     
 }  
+
 h1{  
     text-align: center;  
     color: #EFEBEA;  
@@ -62,8 +62,34 @@ label{
     cursor: pointer;
 }
  
+#knoppena{
+text-align: center;
+margin: auto;
+width: 100%;
+padding: 1px;
+padding-right: 20px;
+}
+
+#knoppen{
+    text-align: center;
+}
+
 a{  
-    float: left;  
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: #EFEBEA;  
+    background-color: #CFA2A3;
+    display: inline-block;
+    text-decoration: none;
+}  
+
+a:hover{  
+    color: #EFEBEA;  
+    background-color: #BFA3A3;
+    cursor: pointer;
 }  
 
 p{
