@@ -5,9 +5,10 @@ const port = process.env.port || 8080
 require('dotenv').config()
 const connectDB = require('./config/db')
 const mongoose = require('mongoose')
-const user = require("./models/user")
+const User = require("./models/user")
 const bcrypt = require('bcrypt')
 const { deburr } = require('lodash')
+const req = require('express/lib/request')
 
 
 connectDB();
@@ -33,16 +34,19 @@ app.get('/register', (req, res) => {
 
 //gebruik van registreren
   app.post('/register', async (req, res) => {
+    const email = req.body.email
     const gebruikersnaam = req.body.gebruikersnaam
     const wachtwoord = req.body.wachtwoord
-    try {
-          const verborgenWachtwoord = await bcrypt.hash(wachtwoord, 10)
-         
-          const result = await user.create({
-            gebruikersnaam: gebruikersnaam,
-            wachtwoord: verborgenWachtwoord
-          })
   
+    try {
+          // const verborgenWachtwoord = await bcrypt.hash(wachtwoord, 10)
+         
+          const result = await User.create({
+            email: email,
+            gebruikersnaam: gebruikersnaam,
+            wachtwoord: wachtwoord
+          })
+        return result,
          res.redirect('/about')
     } catch {
       console.log('Niet gelukt om een account aan te maken, probeer het nog eens')
@@ -56,23 +60,30 @@ app.get('/login', (req, res) =>{
 })
 
 //gebruik van inloggen
-app.post('/login', async (req, res) => {
-  const gebruikersnaam = req.body.gebruikersnaam
-  const wachtwoord = req.body.wachtwoord
+  app.post('/login', async (req, res) => {
     try {
-          const verborgenWachtwoord = await bcrypt.hash(wachtwoord, 10)
-         
-          const result = await user.create({
-            gebruikersnaam: gebruikersnaam,
-            wachtwoord: verborgenWachtwoord
-          })
-  
-         res.redirect('/about')
-    } catch {
-      console.log('Niet gelukt om in te loggen, probeer het nog eens')
-        res.redirect('login')
+      const deGebruiker = await User.find({'email': req.body.email}).lean()
+      const wachtwoord = await User.find({'wachtwoord': req.body.wachtwoord}).lean()
+
+      if(deGebruiker){
+        if (wachtwoord == deGebruiker.wachtwoord) {
+          // return deGebruiker
+          res.redirect('/about')
+          console.log('succesvol ingelogd')
+        } else {
+          // return 'invalid password'
+          console.log('fout wachtwoord')
+        }
+      } else {
+        // return 'user was not found'
+        console.log('gebruiker niet gevonden')
+      }
+
+    } catch (error) {
+      throw new Error(error)
     }
   })
+
 
 //laat about pagina zien
 app.get('/about', (req, res) => {
@@ -82,12 +93,12 @@ app.get('/about', (req, res) => {
       gebruikersnaam: gebruikersnaam,
     }
     })
-  })
+  }),
 
 //laat logout pagina zien
 app.get('/logout', (req, res) =>{
   res.render('logout')
-})
+}),
 
 //Server luistert op poort 8080
 app.listen(port, () => {
