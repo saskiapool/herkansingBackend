@@ -62,17 +62,18 @@ app.get('/login', (req, res) =>{
 //gebruik van inloggen
   app.post('/login', async (req, res) => {
     try {
-      const deGebruiker = await User.find({'email': req.body.email}).lean()
-      const wachtwoord = await User.find({'wachtwoord': req.body.wachtwoord}).lean()
+      const deGebruiker = await User.findOne({'email': req.body.email}).lean()
+      const wachtwoord = req.body.wachtwoord
 
       if(deGebruiker){
-        if (wachtwoord == deGebruiker.wachtwoord) {
+        console.log(deGebruiker.wachtwoord === wachtwoord)
+        if (deGebruiker.wachtwoord === wachtwoord) {
           // return deGebruiker
           res.redirect('/about')
           console.log('succesvol ingelogd')
         } else {
-          // return 'invalid password'
-          console.log('fout wachtwoord')
+          //return 'invalid password'
+          console.log('fout')
         }
       } else {
         // return 'user was not found'
