@@ -5,10 +5,11 @@ const port = process.env.port || 8080
 require('dotenv').config()
 const connectDB = require('./config/db')
 const mongoose = require('mongoose')
-const User = require("./models/user")
+const User = require('./models/user')
 const bcrypt = require('bcrypt')
 const { deburr } = require('lodash')
 const req = require('express/lib/request')
+const res = require('express/lib/response')
 
 
 connectDB();
@@ -59,6 +60,11 @@ app.get('/login', (req, res) =>{
   res.render('login')
 })
 
+// geen gebruiker pagina laden
+app.get('/geenGebruiker', (req, res) =>{
+  res.render('geenGebruiker')
+})
+
 //gebruik van inloggen
   app.post('/login', async (req, res) => {
     try {
@@ -78,10 +84,12 @@ app.get('/login', (req, res) =>{
       } else {
         // return 'user was not found'
         console.log('gebruiker niet gevonden')
+        res.redirect('/geenGebruiker')
       }
 
-    } catch (error) {
-      throw new Error(error)
+    } catch (err) {
+      console.log(err)
+      throw new Error('Er is iets mis gegaan, probeer het later nog eens')
     }
   })
 
@@ -89,11 +97,7 @@ app.get('/login', (req, res) =>{
 //laat about pagina zien
 app.get('/about', (req, res) => {
   const gebruikersnaam = req.body.gebruikersnaam
-  res.render('about', {
-    person: {
-      gebruikersnaam: gebruikersnaam,
-    }
-    })
+  res.render('about')
   }),
 
 //laat logout pagina zien
